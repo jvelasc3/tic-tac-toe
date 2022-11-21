@@ -8,7 +8,7 @@ let gameModule = (function () {
 
   const winningMessage = () => `${currentPlayer} wins!`;
   const tieMessage = "Tie Game!";
-  const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+  const currentPlayerTurn = () => `It's ${currentPlayer}'s turn!`;
   gameStatusMessage.textContent = currentPlayerTurn();
   changeMessageColor("0000FF");
 
@@ -37,13 +37,13 @@ let gameModule = (function () {
     handleResult();
   }
 
-  function handlePlay(clickedElement, squareIndex) {
-    gameBoard[squareIndex] = currentPlayer;
-    clickedElement.textContent = currentPlayer;
+  function handlePlay(clickedSquare, clickedSquareNumber) {
+    gameBoard[clickedSquareNumber] = currentPlayer;
+    clickedSquare.textContent = currentPlayer;
     if (currentPlayer === "X") {
-      clickedElement.style.color = "#0000FF";
+      clickedSquare.style.color = "#0000FF";
     } else {
-      clickedElement.style.color = "#FF00FF";
+      clickedSquare.style.color = "#FF00FF";
     }
   }
 
@@ -82,8 +82,13 @@ let gameModule = (function () {
     gameStatusMessage.style.color = "#" + color;
   }
   function changePlayer() {
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    if (currentPlayer === "X") {
+      currentPlayer = "O";
+    } else {
+      currentPlayer = "X";
+    }
     gameStatusMessage.textContent = currentPlayerTurn();
+
     if (currentPlayer === "X") {
       changeMessageColor("0000FF");
     } else {
