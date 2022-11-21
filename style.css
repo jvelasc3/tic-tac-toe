@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#board-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  height: 300px;
+}
+
+.board-square {
+  border: 1px solid black;
+}
